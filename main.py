@@ -1,11 +1,8 @@
 
-
 # https://www.sporcle.com/games/g/states
 
-from os import stat
 import turtle
 import pandas
-from tkinter import *
 
 '''Display US states gif'''
 screen = turtle.Screen()
@@ -19,13 +16,6 @@ turtle.shape(image)
 data = pandas.read_csv("50_states.csv")
 all_states = data.state.tolist()
 guessed_states = []
-
-def already_guessed_popup(state):
-    root = Tk()
-    root.title("Warning!")
-    w=200
-    h=200
-
 
 while len(guessed_states) < 50:
     answer_state = screen.textinput(title=f"{len(guessed_states)}/50 States Correct", prompt="What's another state's name").title()
@@ -43,7 +33,7 @@ while len(guessed_states) < 50:
     '''Add state to gif'''
     if answer_state in all_states:
         if answer_state in guessed_states:
-            already_guessed_popup(answer_state)
+            continue
         else:
             guessed_states.append(answer_state)
             t = turtle.Turtle()
